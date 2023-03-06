@@ -1,0 +1,127 @@
+=== Anotações Modulo1 ===
+----------------------------------------------------------------------------------------------------------------------------------
+== Setup development environment ==
+1-Comando para iniciar um servidor com browser sync
+browser-sync start --server --directory --files "*"
+browser-sync start --server --directory --files "**/*"
+2-Criar um "site" através do github pages
+Entrar no repositorio do github, ir em Settings -> Create GitHub page
+O que é mostrado no link gerado é oq está na branch gh-pages
+Vc pode por exemplo criar um diretório novo nessa branch chamado site, e aí , é so adicionar /site ao final do link para acessar tal conteudo
+3-Tirar duvidas online / links importantes
+stackoverflow
+jsfiddle.net <- Bom para testar código online, e tirar duvidas sobre front end
+codepen.io <- similar ao jsfiddle (playground de front end)
+----------------------------------------------------------------------------------------------------------------------------------
+== HTML Basics ==
+
+O que é HTML : Hypertext Marking Language
+-Provê a estrutura básica de uma página (não diz nada sobre a parte visual) -> Componentes
+									CSS    -> Cor , estilos
+								 JavaScript    -> Comportamento
+
+:: Quem desenvolve o HTML
+w3c - Responsável pelo HTML5 standard
+whatwg - Grupo dos responsáveis pelo browsers, html em evolução constante
+
+:: Sites importantes para se atualizar sobre a estrutura do html
+w3.org
+caniuse.com <- Bom para ver a compatibilidade com browsers
+validator.w3.org <- para validar seu html (compatibilidade)
+w3schools.org <- estatisticas sobre browsers
+
+:: Anatomia de uma tag
+<p> conteudo </p>
+- p é chamado de elemento , e juntamente com os brackets <> , é chamado de tag, ainda que esses nomes podem significar a mesma coisa dependendo do contexto
+algumas tags , como <br>, e <hr> possuem apenas abertura, sem o fechamento 
+- Cada elemento do html pode ter atributos: (id : nome do atributo , "MyId": valor do atributo)
+<p id = "MyId"></p>
+- Alguns tipos de atributos podem ser do tipo únicos, de forma que nenhum outro elemento possa ter o mesmo valor para um determinado atributo
+- Atributos são especificados na tag de abertura
+- Aspas duplas são equivalentes a aspas simples, porém se por exemplo o proprio valor dentro das aspas tiver aspas, deve se usar aspas diferentes das aspas externas. Ex : <p onclick="alert('hi')"></p>
+- Em XML, É possivel existencia de tags sem conteúdo : </p> Em HTML5 isso não é possivel, ou seja se em algum momento essa tag pode possuir conteudo, ela não pode ser do tipo "self closing" (exemplo anterior)
+
+:: Estrutura Basica HTML
+-Iniciamos o documento com a tag <!doctype html>. Serve para dizer ao browser que iremos renderizar html. Se nao colocarmos nada , ele vai assumir que nao estamos seguindo o padrao html, o que pode gerar
+-Logo abaixo temos a tag <html></html> que irá ter todo o documento dentro.
+-A próxima tag é <head></head>. Ela contém itens que descrevem o conteúdo principal de uma página. Por exemplo, qual character encoding o browser deve utilizar, descrição dos autores, título da pagina,etc. Contém metadados sobre o conteúdo principal. (tag meta não tem fechamento). É obrigatório a tag <title> dentro do head.
+-Em seguida vem a tag <body>. Corresponde ao conteúdo visível ao usuário.
+-Uma página html é renderizada sequencialmente de cima para baixo.
+- Código final:
+
+<!doctype html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title> Coursera is Cool ! </title>
+</head>
+<body>
+Coursera is so cool ! Im learning so much
+</body>
+</html>
+
+:: Modelos de conteúdo HTML
+
+-Antes da especificação do HTML5, os elementos HTML eram do tipo block level ou inline. Com a especificação do HTML5, agora são considerados 7 tipos, ainda que essa classificação antiga ainda seja útil de aprender.
+-Elementos em bloco: São renderizados sempre em uma nova linha (é como se tivesse um \n antes e depois de seu conteúdo). Podem conter dentro deles outros elementos, sejam elementos em bloco ou em linha. Esta categoria se traduz de forma razoável para a categoria Flow Content do HTML5. O elemento div é um tipo de elemento em bloco.
+
+-Elementos em linha: São renderizados por padrão na mesma linha(não tem o caractere de nova linha presente). Podem conter dentro deles apenas outros elementos em linha. Esta categoria se traduz de forma razoável para a categoria Phrasing Content do HTML5. O elemento span é um tipo de elemento em linha.
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+== Essential HTML tags ==
+
+:: Elementos de cabeçalho e elementos semânticos
+
+-As tags h1...h6 representam cabeçalhos, onde h1 é o cabeçalho principal. Apesar de visualmente terem tamanhos diferentes, este recurso não deve ser usado como forma principal de estilizar o documento, já que com CSS podemos manipular tais estruturas de forma livre. Ou seja a utilização de tais tags tem mais a ver com uma melhor semântica do html, pois assim entendemos qual a informação mais importante da página (h1) e por aí vai.
+- Outras tags do html5 que atuam também nesse sentido de semântica (todos são elementos de bloco) : 
+  -header : Usualmente contem o logo da compania , informações ,etc
+  -nav : Normalmente contem links para diferentes partes do site
+  -section : Costuma-se colocar articles dentro de section, mas não há nada que impeça o contrário
+  -article
+  -aside : Comunica alguma informação relacionada ao conteúdo principal. Ex : posts relacionados
+  -footer : rodapé
+- Ou seja, tecnicamente poderiamos usar apenas tags div , porém assim fica mais claro a separação, facilitando a leitura e entendimento.
+
+:: Listas
+
+- Tag ul : Lista desordenada (Apenas tópicos não mostra numeração)
+- Tag ol : Lista ordenada (Numeração)
+- Tag li : elemento da lista
+
+:: Caracteres de referência a entidades
+
+- Servem para evitar problemas de renderização, para renderizar caracteres normalmente indisponiveis no teclado, ou para adaptar um html a um sistema de caracteres mais limitado
+- Nao usar < , > , &. Em vez disso usar &lt; &gt; &amp;
+- Simbolo de copyright: &copy;
+- &nbsp;   Serve para não permitir a quebra de linha entre duas palavras (quando diminuir browser por exemplo)
+- &quot;   Aspas (util para sistemas de caracteres mais limitados)
+
+:: Criando links
+
+- Uso da tag <a>. Atributos : href -> O link, pode ser relativo ou absoluto
+			       title-> Titulo do link
+			       target-> colocando "_blank" o link vai abrir em uma nova aba
+- A tag <a> pode se comportar tanto como elemento de bloco como de linha
+- Podemos usar um link para apontar para a mesma página em uma diferente porção (por ex. uma seção)
+- Ex: <a href = "#section1">
+      <section id = "section1">
+      
+      <a href = "#section6">      
+      <a name = "section6">
+      
+      <a href = "#top">
+      <h1 id = "top">
+
+:: Imagens
+
+- Tag <img>, é um elemento de linha. Atributos : 
+			  src : Link para a imagem ,pode ser interno ou externo, assim como no href
+			  width / height : Largura e altura. É sempre bom especificar 
+			  alt: informação alternativa caso a imagem não possa ser vista
+
+<h2 class = "section-title" id="chicken">Chicken</h2>
+<h2 class = "section-title" id="beef">Beef</h2>
+<h2 class = "section-title" id="sushi">Sushi</h2>
+

@@ -1,0 +1,58 @@
+----------------------------------------------------------------------------------------------------------------------------------
+== CSS basics ==
+
+:: 13 :: Seletores de classe , id , elemento
+- Podemos especificar o estilo de um certo elemento, de uma certa classe (.classname) , ou de um certo id. Também podemos usar multiplos seletores.
+
+p { color : blue ; .... } 
+
+.red {color : red ; }
+<p class = "red">Texto em vermelho</p>
+
+#algumId {color : green;}
+<span id = "algumId">Texto verde</span>
+
+div,h1,h2 {color : yellow;}
+
+:: 14 :: Combinando seletores
+
+- Aplicando um estilo para todo elemento p que seja da classe big :
+
+p.big {color: blue;}
+
+- Aplicando um estilo para todo elemento p que seja diretamente um filho de um elemento article:
+(Por ex, se temos um elemento p dentro de um div dentro de um article, este não seria afetado,
+afetaria somente os elementos p que estão somente dentro de um article.)
+
+article > p {color: blue;}
+
+- Aplicando um estilo para todo elemento p que seja descendente de um elemento article (contemplaria o caso anterior)
+
+article p {color:blue;}
+
+- Aplicando um estilo para todo p descendente de algum elemento de classe colored:
+
+.colored p {color:blue;}
+
+- Aplicando um estilo para todo elemento de classe colored que seja filho de um elemento article:
+
+article > .colored { color: blue;}
+
+- Aplicando um estilo para algum elemento que pertenca simultaneamente a duas classes:
+
+.highlight.mainpoint {color :red; background-color:black;}
+<div class="highlight mainpoint"> xxxx </div>
+
+- Estudar: adjacent sibling selector (selector1 + selector2)
+	   general sibling selector (selector1 ~ selector2)
+	   
+:: 15 :: Pseudoclasses
+
+- Links podem ser estilizados de forma diferente dependendo do estado que eles estão. Os estados podem ser representados com pseudoclasses.
+	a:link - Um link normal, não visitado
+	a:visited - Um link que foi visitado pelo usuário
+	a:hover - Um link no qual o mouse passou por cima
+	a:active - Um link no momento que é clicado
+
+- Outra pseudoclasse util > nth-child()
+
